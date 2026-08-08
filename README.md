@@ -23,7 +23,7 @@ O projeto permite criar, visualizar, concluir e excluir tarefas, servindo també
 * **DaisyUI**
 * **Node.js**
 
-## 📂 Estrutura do projeto
+##  Estrutura do projeto
 
 ```text
 Gerenciador-de-Tarefas-Simples/
