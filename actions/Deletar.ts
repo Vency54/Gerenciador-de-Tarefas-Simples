@@ -1,5 +1,5 @@
 "use server";
-import { getTarefas, removerTarefa } from "@/type/Tarefas";
+import { removerTarefa } from "@/type/Tarefas";
 import { revalidatePath } from "next/cache";
 
 export default async function deletarTarefa(id: string) {
