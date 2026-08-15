@@ -1,38 +1,43 @@
+import { prisma } from "@/lib/prisma";
+
 export type Tarefa = {
   id: string;
   nome: string;
   concluido: boolean;
 };
 
-export let tarefa: Tarefa[] = [
-  { id: "1", nome: "Estudar inglês", concluido: false },
-  { id: "2", nome: "Treinar violão", concluido: false },
-];
-
+//retorna todas as tarefas
 export async function getTarefas() {
-  return [...tarefa];
+  return await prisma.tarefas.findMany({
+    orderBy: { id: "asc" },
+  });
 }
 
 export async function removerTarefa(id: string) {
-  const indice = tarefa.findIndex((t) => t.id === id);
-
-  if (indice !== -1) {
-    tarefa.splice(indice, 1);
-  }
+  await prisma.tarefas.delete({ where: { id: id } });
 }
 
 export default async function alterarTarefa(id: string) {
-  const tasks = await getTarefas();
-
-  const tarefa = tasks.find((t) => t.id === id);
+  const tarefa = await prisma.tarefas.findUnique({
+    where: { id: id },
+  });
 
   if (tarefa) {
-    tarefa.concluido = !tarefa.concluido;
+    await prisma.tarefas.update({
+      where: { id: id },
+      data: { concluido: !tarefa.concluido },
+    });
   }
 }
 
 export async function addTarefas(task: Tarefa) {
   await new Promise((resolve) => setTimeout(resolve, 3000));
-  tarefa = [...tarefa, task];
+  await prisma.tarefas.create({
+    data: {
+      id: task.id,
+      nome: task.nome,
+      concluido: task.concluido,
+    },
+  });
   return getTarefas();
 }

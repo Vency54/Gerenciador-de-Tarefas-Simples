@@ -26,7 +26,7 @@ export default function Botao() {
           className="btn btn-primary text-white border bg-black p-2 my-2 h-10"
           disabled={pendente}
         >
-          {pendente ? "Creating..." : "Create Skill"}
+          {pendente ? "Adicionando..." : "Adicionar Tarefa"}
         </button>
       </form>
     </div>

@@ -3,6 +3,6 @@ import { removerTarefa } from "@/type/Tarefas";
 import { revalidatePath } from "next/cache";
 
 export default async function deletarTarefa(id: string) {
-  removerTarefa(id);
+  await removerTarefa(id);
   revalidatePath("/");
 }
