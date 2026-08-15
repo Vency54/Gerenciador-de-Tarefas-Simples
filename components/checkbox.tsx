@@ -1,6 +1,5 @@
 "use client";
 import alterar from "@/actions/Alterar";
-import alterarTarefa from "@/actions/Alterar";
 
 type Parametros = {
   id: string;
